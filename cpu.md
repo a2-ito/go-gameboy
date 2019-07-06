@@ -19,7 +19,7 @@ instruction.
 CPUがプログラムのどこにいるのかをトラックするために、Program Counter (PC) という数値が CPU によって保持される。
 命令がメモリからフェッチされた後、PC は命令を構成する多くのバイト列によってインクリメントされる。
 
-![The fetch-decode-execute loop](https://github.com/a2-ito/gist_images/blob/master/02_go-gameboy/01_the_fetch-decode-execute_loop.pngh)
+![The fetch-decode-execute loop](https://github.com/a2-ito/gist_images/blob/master/02_go-gameboy/01_the_fetch-decode-execute_loop.png)
 
 The CPU in the original GameBoy is a modified Zilog Z80m, so the following things are pertinent:
 
