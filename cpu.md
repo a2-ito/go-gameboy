@@ -11,6 +11,7 @@ In order to keep track of where the CPU is within the program, a number is held 
 Counter(PC). After an instructin is fetched from memory, the PC is advanced by however many bytes make up the 
 instruction.
 
+![The fetch-decode-execute loop](https://github.com/a2-ito/gist_images/blob/master/01_spanner/spanner_figure1.png)
 
 The CPU in the original GameBoy is a modified Zilog Z80m, so the following things are pertinent:
 
