@@ -7,11 +7,19 @@ area as normal memory, depending on the computer. Each instruction takes a short
 and they're all run one by one. From the CPU's perspective, a loop starts up as soon as the computer is
 turned on, to fetch an instruction from memory, work out what it says, and execute it.
 
+従来のコンピュータモデルは、プロセッシングユニットである。それは、命令コードによって何をすべきか指示を得る。
+そのプログラムは、独自のメモリによってアクセスされるか、通常のメモリ領域に書かれているだろう。
+各命令は、短時間で、一つ一つ実行される。CPUの観点では、コンピュータが起動するとすぐにループが始まり、
+メモリから命令をフェッチし、それに実行する。
+
 In order to keep track of where the CPU is within the program, a number is held by the CPU called the Program
 Counter(PC). After an instructin is fetched from memory, the PC is advanced by however many bytes make up the 
 instruction.
 
-![The fetch-decode-execute loop](https://github.com/a2-ito/gist_images/blob/master/01_spanner/spanner_figure1.png)
+CPUがプログラムのどこにいるのかをトラックするために、Program Counter (PC) という数値が CPU によって保持される。
+命令がメモリからフェッチされた後、PC は命令を構成する多くのバイト列によってインクリメントされる。
+
+![The fetch-decode-execute loop](https://github.com/a2-ito/gist_images/blob/master/02_go-gameboy/01_the_fetch-decode-execute_loop.pngh)
 
 The CPU in the original GameBoy is a modified Zilog Z80m, so the following things are pertinent:
 
@@ -36,6 +44,25 @@ LIFO handling of values. The baic model of the Z80 emulation would therefore req
 components:
 
 - An internal state:
-  - A structure for retaining the current state of the 
+  - A structure for retaining the current state of the registers;
+  - The amount of time used to execute the last instruction;
+  - The amount of time that the CPU has run in total;
+- Functions to simulate each instruction;
+- A table mapping said functions onto the opcode map;
+- A known interface to talk to the simulated memory.
+
+The flags register(F) is important to the functioning of the processor: it automatically calculates certain
+bits, or flags, based on the result of the last operation. There are four flags in the Gameboy Z80:
+
+- Zero(0x80): Set if the last operation produced a result of 0;
+- Operation(0x40): Set if the last operation was a subtraction;
+- Half-carry(0x20): Set if, in the result of the last operation, the lower half of the byte overflowed past 15;
+- Carry(0x10): Set if the last operation produced a result over 255 (for additions) or under 0 (for subtractions).
+
+Since the basic calculation registers are 8-bits, the carry flag allows for the software to work out what happend to a value if the result of a calculation overflowed the register. With these flag handling issues in mind, a few examples of instruction simulations are shown below. These examples are simplified, and don't calculate 
+the half-carry flag.
+
+
+
 
 
