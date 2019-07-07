@@ -82,4 +82,10 @@ In order for the emulation to run, it has to emulate the fetch-decode-execute se
 
 実行のエミュレーションのため、fetch-decode-execute のシーケンスをエミュレートしなければならない。"Execute"は命令エミューレーション関数によってケアされるが、Fetch と Decode は特別なコードが必要となる。"dispatch loop" で知られる。このループは各命令を呼び出し、実行のどこに送られるかをデコードし、それをディスパッチする。
 
+## Usage in a system emulation 
+Implementing a Z80 emulation is useless without an emulation to run it. In the next part of this series, the work of emulating the Gameboy begins: I'll be looking at the Gameboy's memory map, and how a game image can be loaded into the emulator over the Web.
+
+Z80エミュレータの実装は、それを実行するためのエミュレーションである。次のパートでは、ゲームボーイをエミュレーションするワークを始める。ゲームボーイのメモリマップ及び、ゲームイメージがどのようにロードされるかを眺める。
+
+The complete Z80 core is availavle: http://imrannazar.com/content/files/jsgb.z80.js; please feel free to let me know if you encounter any bugs in the implementation.
 
